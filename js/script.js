@@ -174,6 +174,8 @@ const submit=document.querySelector('button');
 const name=document.querySelector('#name');
 const email=document.querySelector('#mail');
 
+const activitySection=document.querySelector('.activities legend')
+
 const cardNo=document.querySelector('#cc-num');
 const zip=document.querySelector('#zip');
 const cvv=document.querySelector('#cvv');
@@ -189,7 +191,7 @@ function validateName(input){
 }
 
 function validateEmail(input){
-    const emailRegx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailRegx = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{3})*$/;
     if (emailRegx.test(input)){
         email.style.borderColor='rgb(111, 157, 220)';
         return true;
@@ -200,12 +202,16 @@ function validateEmail(input){
 }
 
 function validateActivity(){
+    let i=0;
     for (let i=0; i<allCheckBoxes.length; i++){
-        if (allCheckBoxes[i].checked){
+        if (!allCheckBoxes[i].checked){
+            continue
+        }
             return true
         }
-        }
-        return false
+    appendError(activitySection, 'You must select at least one activity');
+    return true
+        
     };
 
 function validateCreditCard(cardNo, zip, cvv){

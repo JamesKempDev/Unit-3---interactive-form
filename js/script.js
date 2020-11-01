@@ -210,7 +210,7 @@ function validateActivity(){
             return true
         }
     appendError(activitySection, 'You must select at least one activity');
-    return true
+    return false
         
     };
 
